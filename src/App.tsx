@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
+import ToolsGrid from './components/ToolsGrid';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
@@ -38,6 +39,7 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
+        <ToolsGrid />
         <Experience />
         <Projects />
         <Certifications />

@@ -119,7 +119,7 @@ export default function Skills() {
               className={`flex items-center space-x-2 px-4 py-2 text-xs md:text-sm font-medium rounded-xl border transition-all duration-300 ${
                 activeTab === cat.id
                   ? 'bg-purple-600 dark:bg-purple-500 text-white border-purple-600 dark:border-purple-500 shadow-md shadow-purple-500/20'
-                  : 'bg-white dark:bg-darkCard hover:bg-purple-50 dark:hover:bg-purple-950/20 text-gray-650 dark:text-gray-300 border-gray-200 dark:border-darkBorder/60 hover:border-purple-300 dark:hover:border-purple-800'
+                  : 'bg-white dark:bg-darkCard hover:bg-purple-50 dark:hover:bg-purple-950/20 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-darkBorder/60 hover:border-purple-300 dark:hover:border-purple-800'
               }`}
             >
               {cat.icon}

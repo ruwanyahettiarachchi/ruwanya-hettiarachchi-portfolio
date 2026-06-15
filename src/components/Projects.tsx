@@ -12,6 +12,8 @@ interface Project {
   category: 'Web' | 'Mobile' | 'Research';
   type: 'Personal Project' | 'Group Project' | 'Research Project';
   icon: string;
+  size: string;
+  langCode: string;
 }
 
 export default function Projects() {
@@ -27,7 +29,9 @@ export default function Projects() {
       github: 'https://github.com/ruwanyahettiarachchi',
       category: 'Research',
       type: 'Research Project',
-      icon: '🎓'
+      icon: '🎓',
+      size: '12.4 MB',
+      langCode: 'JS/TS'
     },
     {
       name: 'Selyn Automated Garment System',
@@ -37,7 +41,9 @@ export default function Projects() {
       github: 'https://github.com/ruwanyahettiarachchi',
       category: 'Web',
       type: 'Group Project',
-      icon: '👗'
+      icon: '👗',
+      size: '24.1 MB',
+      langCode: 'MERN'
     },
     {
       name: 'Inventory Management System',
@@ -47,7 +53,9 @@ export default function Projects() {
       github: 'https://github.com/ruwanyahettiarachchi',
       category: 'Web',
       type: 'Personal Project',
-      icon: '📊'
+      icon: '📊',
+      size: '8.2 MB',
+      langCode: 'C#/.NET'
     },
     {
       name: 'Task Tracker Mobile App',
@@ -57,7 +65,9 @@ export default function Projects() {
       github: 'https://github.com/ruwanyahettiarachchi',
       category: 'Mobile',
       type: 'Personal Project',
-      icon: '📝'
+      icon: '📝',
+      size: '4.8 MB',
+      langCode: 'KOTLIN'
     },
     {
       name: 'Event Planning System',
@@ -67,7 +77,9 @@ export default function Projects() {
       github: 'https://github.com/ruwanyahettiarachchi',
       category: 'Web',
       type: 'Group Project',
-      icon: '🎉'
+      icon: '🎉',
+      size: '14.5 MB',
+      langCode: 'JAVA'
     }
   ];
 
@@ -84,8 +96,8 @@ export default function Projects() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-sans mb-4">
             Featured <span className="text-gradient font-sans">Projects</span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto rounded-full"></div>
-          <p className="text-gray-500 dark:text-gray-400 mt-4 text-sm md:text-base max-w-lg mx-auto">
+          <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-500 dark:from-accent-pink dark:to-accent-rose mx-auto rounded-full"></div>
+          <p className="text-gray-500 dark:text-grayCustom mt-4 text-sm md:text-base max-w-lg mx-auto font-sans">
             A showcase of academic research, enterprise group works, and personal software builds highlighting my engineering capabilities.
           </p>
         </div>
@@ -96,10 +108,10 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => setFilter(cat as any)}
-              className={`px-5 py-2 text-xs md:text-sm font-semibold rounded-xl border transition-all duration-300 ${
+              className={`px-5 py-2 text-xs md:text-sm font-semibold rounded-xl border transition-all duration-300 font-sans cursor-pointer ${
                 filter === cat
-                  ? 'bg-purple-600 dark:bg-purple-500 text-white border-purple-600 dark:border-purple-500 shadow-md shadow-purple-500/20'
-                  : 'bg-white dark:bg-darkCard text-gray-650 dark:text-gray-300 border-gray-200 dark:border-darkBorder/60 hover:border-purple-300 dark:hover:border-purple-800'
+                  ? 'bg-purple-600 dark:bg-accent-pink text-white border-purple-600 dark:border-accent-pink shadow-md shadow-purple-500/20'
+                  : 'bg-white dark:bg-darkCard text-gray-600 dark:text-grayCustom border-gray-200 dark:border-darkBorder/60 hover:border-purple-300 dark:hover:border-accent-pink/40'
               }`}
             >
               {cat === 'All' ? 'All Projects' : `${cat} Apps`}
@@ -107,66 +119,79 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 2-Column Horizontal Cards Grid */}
+        <div className="space-y-6 max-w-4xl mx-auto">
           {filteredProjects.map((project, i) => (
             <div 
               key={i}
-              className="glass-card flex flex-col h-full border border-gray-200/40 dark:border-darkBorder/40 overflow-hidden hover:border-purple-400/60 dark:hover:border-purple-500/40 transition-all duration-300 group hover:-translate-y-1.5 hover:shadow-xl"
+              className="console-card border border-gray-200 dark:border-darkBorder bg-white dark:bg-darkCard overflow-hidden transition-all duration-300 flex flex-col md:flex-row items-stretch p-0"
             >
               
-              {/* Project Card Header with Icon */}
-              <div className="p-6 pb-0 flex items-start justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/40 text-2xl flex items-center justify-center border border-purple-100/50 dark:border-purple-800/30 group-hover:scale-110 transition-transform duration-300">
+              {/* Left Column: Visual Schematic Container */}
+              <div className="md:w-1/3 bg-gray-50 dark:bg-darkBg/60 p-6 flex flex-col justify-between items-center text-center border-b md:border-b-0 md:border-r border-gray-200 dark:border-darkBorder/60 select-none">
+                <div className="text-4xl py-6 filter drop-shadow-md transform group-hover:scale-110 transition-transform duration-300">
                   {project.icon}
                 </div>
                 
-                {/* Project Type Badge */}
-                <span className={`px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-md border ${
-                  project.type === 'Research Project'
-                    ? 'bg-indigo-500/10 text-indigo-650 dark:text-indigo-400 border-indigo-500/20'
-                    : project.type === 'Group Project'
-                    ? 'bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/20'
-                    : 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20'
-                }`}>
-                  {project.type.split(' ')[0]}
-                </span>
+                {/* Monospace Metadata */}
+                <div className="w-full text-left space-y-1 mt-4 border-t border-gray-200/50 dark:border-darkBorder/40 pt-3">
+                  <div className="flex justify-between text-[10px] font-mono text-gray-400 dark:text-grayCustom">
+                    <span>SIZE:</span>
+                    <span className="font-semibold text-gray-700 dark:text-white">{project.size}</span>
+                  </div>
+                  <div className="flex justify-between text-[10px] font-mono text-gray-400 dark:text-grayCustom">
+                    <span>STACK:</span>
+                    <span className="font-semibold text-gray-700 dark:text-white">{project.langCode}</span>
+                  </div>
+                  <div className="flex justify-between text-[10px] font-mono text-gray-400 dark:text-grayCustom">
+                    <span>SECTOR:</span>
+                    <span className="font-semibold text-purple-600 dark:text-accent-pink">{project.category}</span>
+                  </div>
+                </div>
               </div>
 
-              {/* Body */}
-              <div className="p-6 flex-grow flex flex-col justify-between">
+              {/* Right Column: Content Details */}
+              <div className="md:w-2/3 p-6 md:p-8 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2 leading-tight">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={`px-2 py-0.5 text-[9px] font-mono font-bold uppercase tracking-wider rounded border ${
+                      project.type === 'Research Project'
+                        ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20'
+                        : project.type === 'Group Project'
+                        ? 'bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/20'
+                        : 'bg-purple-500/10 text-purple-600 dark:text-accent-pink border-purple-500/20'
+                    }`}>
+                      {project.type}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 font-sans">
                     {project.name}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-3 leading-relaxed mb-4">
+                  
+                  <p className="text-sm text-gray-500 dark:text-grayCustom leading-relaxed mb-6 font-sans">
                     {project.description}
                   </p>
                 </div>
 
                 <div>
                   {/* Tech stack badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {project.technologies.slice(0, 4).map((tech, idx) => (
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.technologies.map((tech, idx) => (
                       <span 
                         key={idx}
-                        className="px-2 py-0.5 text-[11px] font-medium text-purple-650 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/20 rounded border border-purple-100/25 dark:border-purple-900/20"
+                        className="px-2 py-0.5 text-[10px] font-mono text-purple-700 dark:text-accent-pink bg-purple-50 dark:bg-darkBg rounded border border-purple-100/30 dark:border-darkBorder"
                       >
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 4 && (
-                      <span className="px-2 py-0.5 text-[11px] font-medium text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-darkBg rounded">
-                        +{project.technologies.length - 4}
-                      </span>
-                    )}
                   </div>
 
                   {/* Actions buttons */}
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-darkBorder/40">
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="inline-flex items-center space-x-1.5 text-xs font-semibold text-purple-650 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition-colors"
+                      className="inline-flex items-center space-x-1.5 text-xs font-semibold text-purple-600 dark:text-accent-pink hover:text-purple-800 dark:hover:text-white transition-colors cursor-pointer font-sans"
                     >
                       <Eye className="w-4 h-4" />
                       <span>View Details</span>
@@ -176,7 +201,7 @@ export default function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-gray-50 dark:bg-darkBg hover:bg-purple-55 dark:hover:bg-purple-950/30 text-gray-550 dark:text-gray-400 hover:text-purple-650 dark:hover:text-purple-450 transition-colors border border-gray-150/30 dark:border-darkBorder/20"
+                      className="p-2 rounded-lg bg-gray-50 dark:bg-darkBg hover:bg-purple-50 dark:hover:bg-accent-pink/10 text-gray-500 dark:text-grayCustom hover:text-purple-600 dark:hover:text-accent-pink transition-colors border border-gray-200/50 dark:border-darkBorder cursor-pointer"
                       title="GitHub Repository"
                     >
                       <Github className="w-4 h-4" />
@@ -202,7 +227,7 @@ export default function Projects() {
                     <h3 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">
                       {selectedProject.name}
                     </h3>
-                    <span className="inline-block mt-1 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                    <span className="inline-block mt-1 text-xs font-semibold text-purple-600 dark:text-accent-pink">
                       {selectedProject.type}
                     </span>
                   </div>
@@ -210,7 +235,7 @@ export default function Projects() {
                 
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-gray-650 dark:hover:text-gray-250 hover:bg-gray-100 dark:hover:bg-darkBorder"
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-darkBorder"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -222,7 +247,7 @@ export default function Projects() {
                   <h4 className="text-sm font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">
                     Description
                   </h4>
-                  <p className="text-sm md:text-base text-gray-655 dark:text-gray-300 leading-relaxed">
+                  <p className="text-sm md:text-base text-gray-600 dark:text-grayCustom leading-relaxed">
                     {selectedProject.longDescription}
                   </p>
                 </div>
@@ -235,7 +260,7 @@ export default function Projects() {
                     {selectedProject.technologies.map((tech, idx) => (
                       <span 
                         key={idx}
-                        className="px-3 py-1 text-xs font-medium text-purple-650 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/40 rounded-lg border border-purple-100/30 dark:border-purple-900/35"
+                        className="px-3 py-1 text-xs font-mono font-medium text-purple-600 dark:text-accent-pink bg-purple-50 dark:bg-darkBg rounded-lg border border-purple-100/30 dark:border-darkBorder"
                       >
                         {tech}
                       </span>
@@ -252,8 +277,8 @@ export default function Projects() {
                       <Users className="w-4 h-4 text-purple-500" />
                     )}
                     <div>
-                      <p className="text-[10px] text-gray-450 dark:text-gray-500 uppercase">Team Size</p>
-                      <p className="text-xs font-semibold text-gray-750 dark:text-gray-300">
+                      <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase">Team Size</p>
+                      <p className="text-xs font-semibold text-gray-750 dark:text-grayCustom">
                         {selectedProject.type === 'Personal Project' ? 'Individual' : 'Team / Group'}
                       </p>
                     </div>
@@ -261,8 +286,8 @@ export default function Projects() {
                   <div className="flex items-center space-x-2.5">
                     <BookOpen className="w-4 h-4 text-pink-500" />
                     <div>
-                      <p className="text-[10px] text-gray-450 dark:text-gray-500 uppercase">Category</p>
-                      <p className="text-xs font-semibold text-gray-750 dark:text-gray-300">
+                      <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase">Category</p>
+                      <p className="text-xs font-semibold text-gray-750 dark:text-grayCustom">
                         {selectedProject.category} Development
                       </p>
                     </div>
@@ -284,7 +309,7 @@ export default function Projects() {
                 
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="btn-primary py-2 px-6 text-sm"
+                  className="btn-primary py-2 px-6 text-sm animate-pulse-slow"
                 >
                   Close Details
                 </button>
