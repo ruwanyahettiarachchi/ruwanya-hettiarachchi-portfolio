@@ -16,7 +16,7 @@ interface ExperienceItem {
 export default function Experience() {
   const experiences: ExperienceItem[] = [
     {
-      role: 'Software Developer',
+      role: 'Software Develope',
       company: 'Sun System Technologies & Developers (Pvt) Ltd',
       location: 'Sri Lanka',
       period: 'September 2025 – Present',
