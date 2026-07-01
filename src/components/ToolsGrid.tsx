@@ -1,11 +1,12 @@
 import React from 'react';
-import { 
-  Terminal, 
-  GitBranch, 
-  Layers, 
-  Laptop, 
-  Hammer, 
-  Box
+import {
+  Terminal,
+  GitBranch,
+  Layers,
+  Laptop,
+  Hammer,
+  Box,
+  Wrench
 } from 'lucide-react';
 
 interface Tool {
@@ -13,84 +14,106 @@ interface Tool {
   description: string;
   category: string;
   icon: React.ReactNode;
+  gradient: string;
+  glow: string;
 }
 
 export default function ToolsGrid() {
   const tools: Tool[] = [
     {
       name: 'VS Code & Visual Studio',
-      description: 'Primary IDEs for web apps, C#/.NET MVC architectures, and script automation developments.',
-      category: 'Development Environments',
-      icon: <Laptop className="w-5 h-5 text-accent-pink" />
+      description: 'Primary IDEs for web apps, C#/.NET MVC architectures, and script automation.',
+      category: 'Development',
+      icon: <Laptop className="w-5 h-5" />,
+      gradient: 'linear-gradient(135deg, #7c3aed, #a855f7)',
+      glow: 'rgba(124,58,237,0.3)',
     },
     {
       name: 'Git & GitHub',
-      description: 'Version controlling, branch sandboxing, CI/CD Actions deployments, and open-source project management.',
+      description: 'Version control, branch management, CI/CD Actions, and open-source collaboration.',
       category: 'Version Control',
-      icon: <GitBranch className="w-5 h-5 text-purple-500" />
+      icon: <GitBranch className="w-5 h-5" />,
+      gradient: 'linear-gradient(135deg, #374151, #1f2937)',
+      glow: 'rgba(55,65,81,0.3)',
     },
     {
       name: 'Postman',
-      description: 'API routing simulation, integration pipeline checks, and response validation suites.',
-      category: 'API Engineering',
-      icon: <Terminal className="w-5 h-5 text-pink-500" />
+      description: 'API routing simulation, integration pipeline checks, and response validation.',
+      category: 'API Testing',
+      icon: <Terminal className="w-5 h-5" />,
+      gradient: 'linear-gradient(135deg, #f97316, #ef4444)',
+      glow: 'rgba(249,115,22,0.3)',
     },
     {
       name: 'Docker & Kubernetes',
       description: 'Containerization, microservice partitioning, and deployment orchestration.',
-      category: 'DevOps & Containers',
-      icon: <Box className="w-5 h-5 text-blue-500" />
+      category: 'DevOps',
+      icon: <Box className="w-5 h-5" />,
+      gradient: 'linear-gradient(135deg, #0ea5e9, #2563eb)',
+      glow: 'rgba(14,165,233,0.3)',
     },
     {
       name: 'Xcode',
-      description: 'iOS application compiler, interface layout builder, and Swift framework management.',
-      category: 'Mobile Tooling',
-      icon: <Layers className="w-5 h-5 text-teal-500" />
+      description: 'iOS app development, Swift framework management, and UI layout building.',
+      category: 'Mobile Dev',
+      icon: <Layers className="w-5 h-5" />,
+      gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+      glow: 'rgba(6,182,212,0.3)',
     },
     {
       name: 'Figma',
-      description: 'UI/UX interface modeling, dynamic canvas mockups, wireframing, and component blueprinting.',
-      category: 'Design & Prototyping',
-      icon: <Hammer className="w-5 h-5 text-indigo-500" />
+      description: 'UI/UX modeling, dynamic mockups, wireframing, and component blueprinting.',
+      category: 'Design',
+      icon: <Hammer className="w-5 h-5" />,
+      gradient: 'linear-gradient(135deg, #ec4899, #8b5cf6)',
+      glow: 'rgba(236,72,153,0.3)',
     }
   ];
 
   return (
-    <section id="tools" className="py-20 bg-gray-50/20 dark:bg-darkCard/10 relative">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        
+    <section id="tools" className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-15 dark:opacity-8"
+        style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.06) 0%, transparent 70%)' }} />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-sans mb-4">
-            Premium <span className="text-gradient font-sans">Tools</span>
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center space-x-2 mb-4 px-3 py-1.5 rounded-full"
+            style={{ background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.18)' }}>
+            <Wrench className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+            <span className="text-xs font-mono font-bold text-purple-700 dark:text-purple-300 tracking-widest uppercase">Dev Tools</span>
+          </div>
+          <h2 className="section-heading mb-4">
+            My <span className="text-gradient">Toolbox</span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-500 dark:from-accent-pink dark:to-accent-rose mx-auto rounded-full"></div>
-          <p className="text-gray-500 dark:text-grayCustom mt-4 text-sm md:text-base max-w-lg mx-auto font-sans">
-            The software, compilers, and workflow suites that anchor my everyday software engineering environments.
+          <div className="h-1 w-24 mx-auto rounded-full mb-5"
+            style={{ background: 'linear-gradient(90deg, #7c3aed, #ec4899)' }} />
+          <p className="text-gray-500 dark:text-grayCustom text-sm md:text-base max-w-lg mx-auto font-sans">
+            The software, compilers, and workflow suites that anchor my everyday engineering environment.
           </p>
         </div>
 
-        {/* Tools Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {/* Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
           {tools.map((tool, index) => (
-            <div 
+            <div
               key={index}
-              className="console-card flex flex-col justify-between group"
+              className="console-card group flex items-start space-x-4"
             >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 bg-gray-50 dark:bg-darkBg rounded-xl text-purple-600 dark:text-accent-pink group-hover:scale-110 transition-transform duration-300">
-                    {tool.icon}
-                  </div>
-                  <span className="text-[10px] font-mono font-semibold text-gray-400 dark:text-grayCustom uppercase tracking-wider">
-                    {tool.category}
-                  </span>
-                </div>
+              <div
+                className="w-12 h-12 rounded-2xl flex items-center justify-center text-white flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                style={{ background: tool.gradient, boxShadow: `0 8px 20px ${tool.glow}` }}
+              >
+                {tool.icon}
+              </div>
 
-                <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2 font-sans">
-                  {tool.name}
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-grayCustom leading-relaxed font-sans">
+              <div className="space-y-1 flex-grow">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-bold text-gray-900 dark:text-white font-sans">{tool.name}</h3>
+                  <span className="text-[9px] font-mono font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">{tool.category}</span>
+                </div>
+                <p className="text-xs text-gray-500 dark:text-grayCustom leading-relaxed font-sans">
                   {tool.description}
                 </p>
               </div>
